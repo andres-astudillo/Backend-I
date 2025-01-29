@@ -1,0 +1,202 @@
+[
+    {
+        "id": "1",
+        "title": "Smartphone X",
+        "description": "Último modelo con pantalla OLED",
+        "code": "P001",
+        "price": 999,
+        "status": true,
+        "stock": 50,
+        "category": "Electrónica",
+        "thumbnails": [
+            "smartphone_x_1.jpg",
+            "smartphone_x_2.jpg"
+        ]
+    },
+    {
+        "id": "2",
+        "title": "Laptop Pro",
+        "description": "Laptop de alto rendimiento para profesionales",
+        "code": "P002",
+        "price": 1500,
+        "status": true,
+        "stock": 30,
+        "category": "Electrónica",
+        "thumbnails": [
+            "laptop_pro_1.jpg",
+            "laptop_pro_2.jpg"
+        ]
+    },
+    {
+        "id": "3",
+        "title": "Tablet Lite",
+        "description": "Tablet ligera y portátil",
+        "code": "P003",
+        "price": 300,
+        "status": true,
+        "stock": 100,
+        "category": "Electrónica",
+        "thumbnails": [
+            "tablet_lite_1.jpg"
+        ]
+    },
+    {
+        "id": "4",
+        "title": "Auriculares Inalámbricos",
+        "description": "Auriculares con cancelación de ruido",
+        "code": "P004",
+        "price": 200,
+        "status": true,
+        "stock": 75,
+        "category": "Accesorios",
+        "thumbnails": [
+            "auriculares_1.jpg",
+            "auriculares_2.jpg"
+        ]
+    },
+    {
+        "id": "5",
+        "title": "Smartwatch Fitness",
+        "description": "Reloj inteligente con monitor de salud",
+        "code": "P005",
+        "price": 250,
+        "status": true,
+        "stock": 60,
+        "category": "Wearables",
+        "thumbnails": [
+            "smartwatch_1.jpg"
+        ]
+    },
+    {
+        "id": "6",
+        "title": "Cámara DSLR",
+        "description": "Cámara profesional para fotografía",
+        "code": "P006",
+        "price": 1200,
+        "status": true,
+        "stock": 20,
+        "category": "Fotografía",
+        "thumbnails": [
+            "camara_dslr_1.jpg",
+            "camara_dslr_2.jpg"
+        ]
+    },
+    {
+        "id": "7",
+        "title": "Impresora Multifunción",
+        "description": "Impresora para oficina y hogar",
+        "code": "P007",
+        "price": 150,
+        "status": true,
+        "stock": 40,
+        "category": "Oficina",
+        "thumbnails": [
+            "impresora_1.jpg"
+        ]
+    },
+    {
+        "id": "8",
+        "title": "Teclado Mecánico",
+        "description": "Teclado para gamers y programadores",
+        "code": "P008",
+        "price": 120,
+        "status": true,
+        "stock": 80,
+        "category": "Accesorios",
+        "thumbnails": [
+            "teclado_1.jpg"
+        ]
+    },
+    {
+        "id": "9",
+        "title": "Monitor 4K",
+        "description": "Monitor ultra HD para diseño y gaming",
+        "code": "P009",
+        "price": 500,
+        "status": true,
+        "stock": 25,
+        "category": "Electrónica",
+        "thumbnails": [
+            "monitor_4k_1.jpg",
+            "monitor_4k_2.jpg"
+        ]
+    },
+    {
+        "id": "10",
+        "title": "Altavoz Bluetooth",
+        "description": "Altavoz portátil con sonido envolvente",
+        "code": "P010",
+        "price": 80,
+        "status": true,
+        "stock": 120,
+        "category": "Audio",
+        "thumbnails": [
+            "altavoz_1.jpg"
+        ]
+    },
+    {
+        "id": "11",
+        "title": "Mochila para Laptop",
+        "description": "Mochila resistente con compartimento para laptop",
+        "code": "P011",
+        "price": 60,
+        "status": true,
+        "stock": 90,
+        "category": "Accesorios",
+        "thumbnails": [
+            "mochila_1.jpg"
+        ]
+    },
+    {
+        "id": "12",
+        "title": "Mouse Inalámbrico",
+        "description": "Mouse ergonómico para largas horas de trabajo",
+        "code": "P012",
+        "price": 40,
+        "status": true,
+        "stock": 150,
+        "category": "Accesorios",
+        "thumbnails": [
+            "mouse_1.jpg"
+        ]
+    },
+    {
+        "id": "13",
+        "title": "Disco Duro Externo",
+        "description": "Almacenamiento portátil de 1TB",
+        "code": "P013",
+        "price": 70,
+        "status": true,
+        "stock": 200,
+        "category": "Almacenamiento",
+        "thumbnails": [
+            "disco_duro_1.jpg"
+        ]
+    },
+    {
+        "id": "14",
+        "title": "Router Wi-Fi 6",
+        "description": "Router de última generación para conexiones rápidas",
+        "code": "P014",
+        "price": 180,
+        "status": true,
+        "stock": 50,
+        "category": "Redes",
+        "thumbnails": [
+            "router_1.jpg"
+        ]
+    },
+    {
+        "id": "15",
+        "title": "Cargador Inalámbrico",
+        "description": "Cargador rápido para dispositivos compatibles",
+        "code": "P015",
+        "price": 30,
+        "status": true,
+        "stock": 300,
+        "category": "Accesorios",
+        "thumbnails": [
+            "cargador_1.jpg"
+        ]
+    }
+]
