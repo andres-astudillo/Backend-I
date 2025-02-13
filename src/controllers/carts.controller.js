@@ -1,4 +1,4 @@
-const CartModel = require('../models/cart.model');
+import CartModel from '../models/cart.model.js';
 
 class CartsController {
     constructor() {
@@ -33,4 +33,4 @@ class CartsController {
     }
 }
 
-module.exports = CartsController;
+export default CartsController;

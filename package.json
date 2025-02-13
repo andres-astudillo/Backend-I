@@ -1,5 +1,5 @@
 {
-  "name": "backend-i-primer-entrega",
+  "name": "backend-i",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "4.21.2"
-  }
+    "backend-i": "file:",
+    "express": "4.21.2",
+    "express-handlebars": "^8.0.1",
+    "socket.io": "^4.8.1"
+  },
+  "type": "module"
 }

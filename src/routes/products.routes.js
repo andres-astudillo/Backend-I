@@ -1,5 +1,5 @@
-const express = require('express');
-const ProductsController = require('../controllers/products.controller');
+import express from 'express';
+import ProductsController from '../controllers/products.controller.js';
 
 const router = express.Router();
 const productsController = new ProductsController();
@@ -10,4 +10,4 @@ router.post('/', productsController.addProduct.bind(productsController));
 router.put('/:pid', productsController.updateProduct.bind(productsController));
 router.delete('/:pid', productsController.deleteProduct.bind(productsController));
 
-module.exports = router;
+export default router;

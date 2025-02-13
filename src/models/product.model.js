@@ -1,7 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-class ProductModel {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default class ProductModel {
     constructor() {
         this.productsFilePath = path.join(__dirname, '../data/products.json');
     }
@@ -41,5 +44,3 @@ class ProductModel {
         fs.writeFileSync(this.productsFilePath, JSON.stringify(filteredProducts, null, 2));
     }
 }
-
-module.exports = ProductModel;

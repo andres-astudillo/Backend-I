@@ -1,4 +1,4 @@
-const ProductModel = require('../models/product.model');
+import ProductModel from '../models/product.model.js';
 
 class ProductsController {
     constructor() {
@@ -51,4 +51,4 @@ class ProductsController {
     }
 }
 
-module.exports = ProductsController;
+export default ProductsController;
