@@ -1,21 +1,22 @@
-const socket = io();
-
-const productForm = document.getElementById('productForm');
-const productList = document.getElementById('productList');
-
-productForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const productTitle = document.getElementById('productTitle').value;
-    const productPrice = document.getElementById('productPrice').value;
-    socket.emit('newProduct', { title: productTitle, price: productPrice });
-    productForm.reset();
+let productosAgregar = [];
+document.getElementById('addCart').addEventListener('click', () => {
+    if(productosAgregar.length > 0) {
+        console.log(productosAgregar);
+    } else {
+        Swal.fire({
+            title: 'Selecciona al menos un producto',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+        });
+    }
 });
 
-socket.on('updateProducts', (products) => {
-    productList.innerHTML = '';
-    products.forEach(product => {
-        const li = document.createElement('li');
-        li.textContent = `${product.title} - $${product.price}`;
-        productList.appendChild(li);
-    });
+document.getElementById('listProducts').addEventListener('click', (event) => {
+    if (event.target.classList.contains('form-check-input')) {
+        if (event.target.checked) {
+            productosAgregar.push(event.target.value);
+        } else {
+            productosAgregar = productosAgregar.filter(id => id !== event.target.value);
+        }
+    }    
 });

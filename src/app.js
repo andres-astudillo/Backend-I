@@ -1,71 +1,109 @@
 import express from 'express';
+import morgan from 'morgan';
 import handlebars from 'express-handlebars';
-import productsRouter from './routes/products.routes.js';
-import cartsRouter from './routes/carts.routes.js';
+import indexRouter from './routes/index.js';
 import viewsRouter from './routes/views.routes.js';
-import { Server } from 'socket.io';
-import { fileURLToPath } from 'url';
+import __dirname from './utils.js';
 import path from 'path';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { Server } from 'socket.io';
+import { connectMongooseDB } from './db/connection.js';
 
 const app = express();
+const PORT = 8080;
 
-// Middlewares
+connectMongooseDB();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(`${__dirname}/public`)); // Ahora __dirname está definido
+app.use(morgan('tiny'));
 
-// Configuración de Handlebars
 app.engine('handlebars', handlebars.engine());
-app.set('views', `${__dirname}/views`);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-// Rutas
-app.use('/api/products', productsRouter);
-app.use('/api/carts', cartsRouter);
-app.use('/', viewsRouter);
-
-// Iniciar servidor HTTP
-const httpServer = app.listen(8080, () => {
-    console.log('Servidor escuchando en el puerto 8080');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', indexRouter);
+const httpServer = app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
-// Configuración de WebSocket
 const io = new Server(httpServer);
 
-io.on('connection', (socket) => {
-    console.log('Nuevo cliente conectado');
+io.on('connection', async (socket) => {
+  console.log('Nuevo cliente conectado');
+  //Despliegue de productos - Llamada a la API para obtener los productos
+  socket.emit('products', await fetchProducts());
 
-    socket.on('newProduct', (product) => {
-        io.emit('updateProducts', product);
-    });
+  //Agregar producto
+  socket.on('newProduct', async (product) => {
+    const data = await addProduct(product);
+    io.emit('newProductResponse', data);
+    io.emit('products', await fetchProducts());
+  });
 
-    socket.on('deleteProduct', (productId) => {
-        io.emit('updateProducts', productId);
-    });
+  //Eliminar producto
+  socket.on('deleteProduct', async (productId) => {
+    const data = await deleteProduct(productId);
+    io.emit('deleteProductResponse', data);
+    io.emit('products', await fetchProducts());
+  });
+  //Despliegue de productos
+  socket.on('disconnect', () => {
+    console.log('Cliente desconectado');
+  });
 });
 
-io.on('connection', (socket) => {
-    console.log('Nuevo cliente conectado');
+const fetchProducts = async () => {
+  try {
+    const response = await fetch('http://localhost:' + PORT + '/api/products');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: 'Error al obtener los productos',
+      data: [],
+    };
+  }
+};
 
-    // Escuchar evento para agregar un producto
-    socket.on('newProduct', async (product) => {
-        const newProduct = await productManager.addProduct(product); // Agregar el producto
-        io.emit('updateProducts', await productManager.getProducts()); // Actualizar la lista
+const deleteProduct = async (productId) => {
+  try {
+    const response = await fetch(
+      `http://localhost:${PORT}/api/products/${productId}`,
+      {
+        method: 'DELETE',
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: 'Error al eliminar el producto',
+      data: [],
+    };
+  }
+};
+
+const addProduct = async (product) => {
+  try {
+    const response = await fetch('http://localhost:' + PORT + '/api/products', {
+      method: 'POST',
+      body: JSON.stringify(product),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return {
+      status: 'error',
+      message: 'Error al agregar el producto',
+      data: [],
+    };
+  }
+};
 
-    // Escuchar evento para modificar un producto
-    socket.on('updateProduct', async ({ id, title, price }) => {
-        await productManager.updateProduct(id, { title, price }); // Modificar el producto
-        io.emit('updateProducts', await productManager.getProducts()); // Actualizar la lista
-    });
-
-    // Escuchar evento para eliminar un producto
-    socket.on('deleteProduct', async (id) => {
-        await productManager.deleteProduct(id); // Eliminar el producto
-        io.emit('updateProducts', await productManager.getProducts()); // Actualizar la lista
-    });
-});
-
-export { io };
+export default app;
