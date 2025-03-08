@@ -1,5 +1,5 @@
 import express from 'express';
-import { productModel } from '../models/product.model';
+import { productModel } from '../models/product.model.js';
 const router = express.Router();
 import axios from 'axios';
 

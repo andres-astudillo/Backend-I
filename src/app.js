@@ -6,7 +6,7 @@ import viewsRouter from './routes/views.routes.js';
 import __dirname from './utils.js';
 import path from 'path';
 import { Server } from 'socket.io';
-import { connectMongooseDB } from './db/connection.js';
+import { connectMongooseDB } from './data/db.js';
 
 const app = express();
 const PORT = 8080;

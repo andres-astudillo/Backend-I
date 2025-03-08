@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { productModel } from '../models/product.model';
+import { productModel } from '../models/product.model.js';
 const router = Router();
 
 //GET /api/products
@@ -73,7 +73,7 @@ router.get('/:pid', async (req, res) => {
   }
 });
 
-// POST /api/products
+// POST   
 router.post('/', async (req, res) => {
   try {
     const data = req.body;

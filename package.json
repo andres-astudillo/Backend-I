@@ -4,18 +4,29 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "node --watch src/app.js"
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "type": "module",
   "dependencies": {
+    "axios": "^1.8.1",
     "backend-i": "file:",
-    "express": "4.21.2",
+    "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
-    "mongodb": "^6.14.2",
-    "socket.io": "^4.8.1"
+    "moment": "^2.30.1",
+    "mongoose": "^8.10.0",
+    "mongoose-paginate-v2": "^1.9.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7",
+    "socket.io": "^4.8.1",
+    "sweetalert2": "^11.16.0",
+    "url": "^0.11.4"
   },
-  "type": "module"
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
 }
